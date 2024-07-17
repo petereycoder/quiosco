@@ -37,6 +37,14 @@ class AuthController extends Controller
             'errors' =>  ['sinfiltro' => ['sinfiltro El email o el password son incorrectos']]
         ], 422);
        }
+
+       //Autenticar al usuario
+       $user = Auth::user();
+       return [
+        'token' => $user->createToken('token')->plainTextToken,
+        'user' => $user
+       ];
+
     }
 
     public function logout(Request $request){
