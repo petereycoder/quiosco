@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegistroRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\RegistroRequest;
 
 class AuthController extends Controller
 {
@@ -29,7 +30,13 @@ class AuthController extends Controller
     }
 
     public function login(LoginRequest $request){
-       return "Desde login";
+       $data = $request->validated();
+       //revisar el password
+       if(!Auth::attempt($data)){
+        return response([
+            'errors' =>  ['sinfiltro' => ['sinfiltro El email o el password son incorrectos']]
+        ], 422);
+       }
     }
 
     public function logout(Request $request){
