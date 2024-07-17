@@ -28,7 +28,7 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        
+       return "Desde login";
     }
 
     public function logout(Request $request){
