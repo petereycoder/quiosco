@@ -21,6 +21,9 @@ class PedidoController extends Controller
     public function store(Request $request)
     {
         //
+        return [
+            'message' => 'realizando pedido'
+        ];
     }
 
     /**
